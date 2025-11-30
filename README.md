@@ -4,7 +4,7 @@ A setup tool for starting CAP (Cloud Application Programming Model) development 
 
 ## Purpose
 
-Easily set up development guidelines and MCP configurations for AI coding assistants (Claude Code, GitHub Copilot, Cursor, etc.) in new CAP projects.
+Easily set up development guidelines and MCP configurations for AI coding assistants (Claude Code, Codex, etc.) in new CAP projects.
 
 ## Features
 
@@ -31,7 +31,7 @@ After copying, these files are automatically added to `.gitignore`.
 
 ```bash
 cd /path/to/your/new/cap/project
-/path/to/init-claude/init-claude.sh
+/path/to/init-claude/init-agent.sh
 ```
 
 ### 2. Result
