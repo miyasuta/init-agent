@@ -20,7 +20,8 @@ mvn test -Dtest=TestClassName
 mvn test -Dtest=TestClassName#methodName
 
 # Capture logs (CRITICAL: use 2>&1)
-mvn test > /tmp/test.log 2>&1
+mkdir -p tmp
+mvn test > tmp/test.log 2>&1
 ```
 
 **Important Notes**:
