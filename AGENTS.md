@@ -15,3 +15,9 @@ This document provides essential rules and guidance for AI coding assistants wor
 - Make code changes without presenting a plan first
 - Modify files before getting user approval
 - Skip the planning phase "to save time"
+
+## Git Workflow (MANDATORY)
+
+- **Always** work on new branch (never commit to main)
+- **Single-line** commit messages (imperative mood)
+- **Delete** branch after merge
