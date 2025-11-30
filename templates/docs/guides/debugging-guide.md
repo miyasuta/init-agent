@@ -1,5 +1,15 @@
 # Debugging Guide for CAP Projects
 
+## Setup: Create tmp Directory
+
+**Before running tests or capturing logs**, create a `tmp/` directory in your project root:
+
+```bash
+mkdir -p tmp
+```
+
+This directory is already in `.gitignore` (added by init-claude.sh).
+
 ## Critical: Always Redirect stderr
 
 ### The Problem
@@ -19,10 +29,11 @@ node --test | grep "pattern"           # Node.js - misses CAP logs
 mvn test 2>&1 | grep "pattern"         # Java
 node --test 2>&1 | grep "pattern"      # Node.js
 
-# ✅ BEST - Save to file first, then search
-mvn test > /tmp/test.log 2>&1          # Java
-node --test > /tmp/test.log 2>&1       # Node.js
-grep "pattern" /tmp/test.log
+# ✅ BEST - Save to file first, then search (use project tmp/)
+mkdir -p tmp
+mvn test > tmp/test.log 2>&1           # Java
+node --test > tmp/test.log 2>&1        # Node.js
+grep "pattern" tmp/test.log
 ```
 
 ### Why This Happens
@@ -90,7 +101,8 @@ mvn test -Dtest=TestClassName
 mvn test -Dtest=TestClassName#methodName
 
 # Capture logs
-mvn test > /tmp/test.log 2>&1
+mkdir -p tmp
+mvn test > tmp/test.log 2>&1
 ```
 
 ### CAP Node.js
@@ -103,7 +115,8 @@ node --test
 node --test path/to/test.js
 
 # Capture logs
-node --test > /tmp/test.log 2>&1
+mkdir -p tmp
+node --test > tmp/test.log 2>&1
 ```
 
 ## Quick Reference

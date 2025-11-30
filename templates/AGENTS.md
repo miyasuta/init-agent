@@ -60,14 +60,17 @@ See [Git Workflow Guide](docs/guides/git-workflow.md) for details.
 **ALWAYS use `2>&1` when capturing logs** (CAP logs to stderr):
 
 ```bash
-# ✅ CORRECT
-mvn test > /tmp/test.log 2>&1      # Java
-node --test > /tmp/test.log 2>&1   # Node.js
+# ✅ CORRECT - Use project tmp/ directory
+mkdir -p tmp
+mvn test > tmp/test.log 2>&1      # Java
+node --test > tmp/test.log 2>&1   # Node.js
 
 # ❌ WRONG - Misses all application logs
 mvn test | grep "pattern"
 node --test | grep "pattern"
 ```
+
+**Note**: The `tmp/` directory is created by init-claude.sh and added to `.gitignore`.
 
 See [Debugging Guide](docs/guides/debugging-guide.md) for details.
 
@@ -132,9 +135,10 @@ node --test path/to/test.js
 ### Capture Logs (CRITICAL: use 2>&1)
 
 ```bash
-mvn test > /tmp/test.log 2>&1       # Java
-node --test > /tmp/test.log 2>&1    # Node.js
-grep "pattern" /tmp/test.log
+mkdir -p tmp
+mvn test > tmp/test.log 2>&1       # Java
+node --test > tmp/test.log 2>&1    # Node.js
+grep "pattern" tmp/test.log
 ```
 
 ## Assistant Behavior

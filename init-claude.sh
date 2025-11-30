@@ -46,7 +46,7 @@ copy_directory_if_absent() {
 
 add_to_gitignore() {
   local gitignore=".gitignore"
-  local entries=("CLAUDE.md" "AGENTS.md" ".mcp.json")
+  local entries=("CLAUDE.md" "AGENTS.md" ".mcp.json" "tmp/")
 
   # ファイルが存在しない場合は新規作成
   if [[ ! -f "$gitignore" ]]; then
