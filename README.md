@@ -1,86 +1,95 @@
 # init-claude
 
-CAP (Cloud Application Programming Model) プロジェクトでAIコーディングアシスタントを使った開発を始めるための初期設定ツール。
+A setup tool for starting CAP (Cloud Application Programming Model) development with AI coding assistants.
 
-## 目的
+## Purpose
 
-新しいCAPプロジェクトに、AIコーディングアシスタント（Claude Code、GitHub Copilot、Cursor等）向けの開発ガイドラインとMCP設定を簡単にセットアップできます。
+Easily set up development guidelines and MCP configurations for AI coding assistants (Claude Code, GitHub Copilot, Cursor, etc.) in new CAP projects.
 
-## 機能
+## Features
 
-このツールは以下のファイルをプロジェクトにコピーします：
+This tool copies the following files to your project:
 
-- **CLAUDE.md** - Claude Code用の設定ファイル（AGENTS.mdへの参照）
-- **.mcp.json** - MCP (Model Context Protocol) サーバー設定
+- **CLAUDE.md** - Configuration file for Claude Code (references AGENTS.md)
+- **AGENTS.md** - Universal guidelines for all AI assistants
+- **docs/** - Detailed development guides
+  - Git workflow
+  - Debugging and log capture
+  - Test-driven development strategy
+  - CAP Java development guide
+- **.mcp.json** - MCP (Model Context Protocol) server configuration
   - CAP MCP Server (@cap-js/mcp-server)
   - Fiori MCP Server (@sap-ux/fiori-mcp-server)
   - UI5 MCP Server (@ui5/mcp-server)
   - SAP Docs Remote
 
-コピー後、`.gitignore`にこれらのファイルを自動追加します。
+After copying, these files are automatically added to `.gitignore`.
 
-## 使い方
+## Usage
 
-### 1. 新しいCAPプロジェクトで実行
+### 1. Run in a New CAP Project
 
 ```bash
 cd /path/to/your/new/cap/project
 /path/to/init-claude/init-claude.sh
 ```
 
-### 2. 実行結果
+### 2. Result
 
-以下のファイルがプロジェクトルートに作成されます：
+The following files are created in your project root:
 
 ```
 your-project/
-├── CLAUDE.md          # AIアシスタント向けガイドライン
-├── .mcp.json          # MCP設定
-└── .gitignore         # 上記ファイルが追加される
+├── CLAUDE.md          # Guidelines for AI assistants
+├── AGENTS.md          # Universal AI assistant guidelines
+├── docs/              # Detailed development guides
+├── .mcp.json          # MCP configuration
+└── .gitignore         # Above files added
 ```
 
-### 3. AGENTS.mdとドキュメントの参照
+### 3. Documentation Structure
 
-- **CLAUDE.md**は`templates/AGENTS.md`を参照します
-- **AGENTS.md**は`templates/docs/guides/`配下の詳細ガイドを参照します
-- これらのファイルはコピーされず、このリポジトリから参照される設計です
+- **CLAUDE.md** references **AGENTS.md** for comprehensive guidelines
+- **AGENTS.md** references detailed guides in `docs/guides/`
+- This modular structure keeps essential rules visible while detailed guides remain accessible
 
-詳細なガイドラインは以下を参照：
-- [AGENTS.md](templates/AGENTS.md) - 全AIアシスタント向けガイドライン
-- [docs/guides/](templates/docs/guides/) - 詳細な開発ガイド集
+For detailed guidelines, see:
+- [AGENTS.md](templates/AGENTS.md) - Universal guidelines for all AI assistants
+- [docs/guides/](templates/docs/guides/) - Detailed development guides
 
-## テンプレートの構成
+## Template Structure
 
 ```
 templates/
-├── CLAUDE.md                    # Claude Code用エントリーポイント
-├── .mcp.json                    # MCP設定
-├── AGENTS.md                    # 全AIアシスタント向けガイドライン
+├── CLAUDE.md                    # Entry point for Claude Code
+├── .mcp.json                    # MCP configuration
+├── AGENTS.md                    # Universal AI assistant guidelines
 └── docs/
-    └── guides/                  # 詳細ガイド
-        ├── git-workflow.md      # Gitワークフロー
-        ├── debugging-guide.md   # デバッグとログ出力
-        ├── test-strategy.md     # TDD戦略
+    └── guides/                  # Detailed guides
+        ├── git-workflow.md      # Git workflow
+        ├── debugging-guide.md   # Debugging and log capture
+        ├── test-strategy.md     # TDD strategy
         └── java/
-            └── development-guide.md  # CAP Java開発ガイド
+            └── development-guide.md  # CAP Java development guide
 ```
 
-## 注意事項
+## Important Notes
 
-- 既存の`CLAUDE.md`や`.mcp.json`がある場合、実行は中止されます
-- `.gitignore`が存在しない場合は新規作成されます
-- コピーされたファイルは自動的に`.gitignore`に追加されます
+- Execution aborts if `CLAUDE.md`, `AGENTS.md`, or `.mcp.json` already exist
+- `.gitignore` is created if it doesn't exist
+- Copied files are automatically added to `.gitignore`
+- `tmp/` directory is added to `.gitignore` for log output (created by AI agents as needed)
 
-## カスタマイズ
+## Customization
 
-プロジェクトに応じて以下をカスタマイズしてください：
+Customize the following based on your project:
 
-1. **AGENTS.md**の「Project Type」セクション
-   - ランタイム（Java/Node.js）を選択
-   - 使用する機能（Fiori Elements、Draft等）をチェック
-2. **Quick Reference Commands**セクション
-   - プロジェクトの実際のパスに更新
+1. **AGENTS.md** "Project Type" section
+   - Select runtime (Java/Node.js)
+   - Check enabled features (Fiori Elements, Draft, etc.)
+2. **Quick Reference Commands** section
+   - Update with actual project paths
 
-## ライセンス
+## License
 
 MIT
