@@ -71,7 +71,6 @@ node --test | grep "pattern"
 ```
 
 **Note**: The `tmp/` directory is created by init-claude.sh and added to `.gitignore`.
-
 See [Debugging Guide](docs/guides/debugging-guide.md) for details.
 
 ### 4. Test-Driven Development (MANDATORY)

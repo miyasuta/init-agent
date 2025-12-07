@@ -1,4 +1,4 @@
-# init-claude
+# init-agent
 
 A setup tool for starting CAP (Cloud Application Programming Model) development with AI coding assistants.
 
@@ -31,7 +31,7 @@ After copying, these files are automatically added to `.gitignore`.
 
 ```bash
 cd /path/to/your/new/cap/project
-/path/to/init-claude/init-agent.sh
+/path/to/init-agent/init-agent.sh
 ```
 
 ### 2. Result
