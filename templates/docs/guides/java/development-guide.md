@@ -71,6 +71,19 @@ CqnSelect query = Select.from(Books_.class)
 CqnSelect query = Select.from("Books");
 ```
 
+### Rule 4: Use Import Statements - Never Fully Qualified Names
+
+```java
+// ✅ CORRECT
+import com.sap.cds.ql.cqn.CqnComparisonPredicate;
+
+CqnComparisonPredicate comparison = (CqnComparisonPredicate) predicate;
+
+// ❌ WRONG - fully qualified name in code
+com.sap.cds.ql.cqn.CqnComparisonPredicate comparison =
+    (com.sap.cds.ql.cqn.CqnComparisonPredicate) predicate;
+```
+
 ## Database Operations
 
 ### PersistenceService vs ApplicationService
@@ -134,6 +147,7 @@ logging:
 1. Use typed entity classes - never `Map<String, Object>`
 2. Use generated service interfaces - not generic `CdsService`
 3. Build queries with metamodel constants - no string literals
+4. Use import statements - never fully qualified names in code
 
 **Database Operations**:
 - Use `PersistenceService` for direct DB access
