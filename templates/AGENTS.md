@@ -60,6 +60,9 @@ See [Git Workflow Guide](docs/guides/git-workflow.md) for details.
 **ALWAYS use `2>&1` when capturing logs** (CAP logs to stderr):
 
 ```bash
+# BEST PRACTICE: Redirect to file first, then grep
+# This avoids issues with tee and allows multiple grep operations
+
 # ✅ CORRECT - Use project tmp/ directory
 mkdir -p tmp
 mvn test > tmp/test.log 2>&1      # Java
