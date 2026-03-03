@@ -6,8 +6,11 @@
         },
         "cds-mcp": {
             "type": "stdio",
-            "command": "cds-mcp",
-            "args": [],
+            "command": "npx",
+            "args": [
+                "-y",
+                "@cap-js/mcp-server"
+            ],
             "env": {}
         },
         "ui5-mcp": {
