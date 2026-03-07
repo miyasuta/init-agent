@@ -64,7 +64,8 @@ See [Git Workflow Guide](docs/guides/git-workflow.md) for details.
 # This avoids issues with tee and allows multiple grep operations
 
 # ✅ CORRECT - Use project tmp/ directory
-mkdir -p tmp
+# Note: Create tmp/ first if your environment doesn't provide its own workspace (e.g., Codex)
+# mkdir -p tmp
 mvn test > tmp/test.log 2>&1      # Java
 node --test > tmp/test.log 2>&1   # Node.js
 
@@ -73,7 +74,7 @@ mvn test | grep "pattern"
 node --test | grep "pattern"
 ```
 
-**Note**: The `tmp/` directory is created by init-claude.sh and added to `.gitignore`.
+**Note**: The `tmp/` directory is created by init-agent.sh and added to `.gitignore`. If your environment provides its own workspace (e.g., Claude Code), you do not need to run `mkdir -p tmp` explicitly.
 See [Debugging Guide](docs/guides/debugging-guide.md) for details.
 
 ### 4. Test-Driven Development (MANDATORY)
@@ -137,7 +138,7 @@ node --test path/to/test.js
 ### Capture Logs (CRITICAL: use 2>&1)
 
 ```bash
-mkdir -p tmp
+# mkdir -p tmp  # Only needed if tmp/ doesn't exist (e.g., Codex; Claude Code can skip)
 mvn test > tmp/test.log 2>&1       # Java
 node --test > tmp/test.log 2>&1    # Node.js
 grep "pattern" tmp/test.log
