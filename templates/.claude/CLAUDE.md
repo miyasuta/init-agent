@@ -11,7 +11,6 @@
 
 - **`.claude/CLAUDE.md`** (this file): Project-specific configuration
 - **`.claude/rules/`**: Development rules and coding standards
-- **`docs/guides/`**: Detailed development guides
 - **`docs/project/`**: Project-specific implementation details
 
 ## Quick Reference

@@ -1,22 +1,32 @@
 # Debugging: Stream Redirection (MANDATORY)
 
-**ALWAYS use `2>&1` when capturing logs** (CAP logs to stderr):
+**ALWAYS use `2>&1` when capturing logs** (CAP logs to stderr, not stdout):
 
 ```bash
-# BEST PRACTICE: Redirect to file first, then grep
-# This avoids issues with tee and allows multiple grep operations
-
-# ✅ CORRECT - Use project tmp/ directory
-# Note: Create tmp/ first if your environment doesn't provide its own workspace (e.g., Codex)
-# mkdir -p tmp
+# ✅ CORRECT - Redirect to file first, then grep
 mvn test > tmp/test.log 2>&1      # Java
 node --test > tmp/test.log 2>&1   # Node.js
+grep "pattern" tmp/test.log
 
 # ❌ WRONG - Misses all application logs
 mvn test | grep "pattern"
 node --test | grep "pattern"
 ```
 
-**Note**: The `tmp/` directory is created by init-agent.sh and added to `.gitignore`. If your environment provides its own workspace (e.g., Claude Code), you do not need to run `mkdir -p tmp` explicitly.
+**Note**: `tmp/` is in `.gitignore`. Claude Code does not need `mkdir -p tmp` explicitly.
 
-See [Debugging Guide](../docs/guides/debugging-guide.md) for details.
+## Enable Debug Logging
+
+**CAP Java** (`src/test/resources/application.yaml`):
+```yaml
+logging:
+  level:
+    com.example.myapp: DEBUG
+    com.sap.cds: DEBUG
+```
+
+**CAP Node.js**:
+```bash
+DEBUG=your-module node --test
+DEBUG=* node --test
+```

@@ -18,8 +18,7 @@
 
 **BEFORE making changes**:
 1. Search MCP servers for CAP/UI5 documentation
-2. Read relevant guide from `docs/guides/`
-3. Check `docs/project/` for project-specific patterns
+2. Check `docs/project/` for project-specific patterns
 
 **ALWAYS**:
 - Use `2>&1` when capturing logs

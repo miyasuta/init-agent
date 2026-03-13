@@ -75,7 +75,6 @@ main() {
   echo "🚀 Initializing Claude Code configuration..."
   copy_directory_if_absent "${TEMPLATE_DIR}/.claude" ".claude"
   copy_template_if_absent "${TEMPLATE_DIR}/.mcp.json" ".mcp.json"
-  copy_directory_if_absent "${TEMPLATE_DIR}/docs" "docs"
   add_to_gitignore
   echo "🎉 Initialization completed successfully in: $PWD"
 }
