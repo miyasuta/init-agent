@@ -46,7 +46,7 @@ copy_directory_if_absent() {
 
 add_to_gitignore() {
   local gitignore=".gitignore"
-  local entries=("CLAUDE.md" "AGENTS.md" ".mcp.json" "tmp/")
+  local entries=(".claude/" ".mcp.json" "tmp/")
 
   # ファイルが存在しない場合は新規作成
   if [[ ! -f "$gitignore" ]]; then
@@ -73,8 +73,7 @@ add_to_gitignore() {
 
 main() {
   echo "🚀 Initializing Claude Code configuration..."
-  copy_template_if_absent "${TEMPLATE_DIR}/CLAUDE.md" "CLAUDE.md"
-  copy_template_if_absent "${TEMPLATE_DIR}/AGENTS.md" "AGENTS.md"
+  copy_directory_if_absent "${TEMPLATE_DIR}/.claude" ".claude"
   copy_template_if_absent "${TEMPLATE_DIR}/.mcp.json" ".mcp.json"
   copy_directory_if_absent "${TEMPLATE_DIR}/docs" "docs"
   add_to_gitignore
