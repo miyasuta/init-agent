@@ -12,8 +12,23 @@ cds init --java     # Java
 
 ## UI5 / Fiori Elements Projects
 
-```bash
-yo @sap/fiori
-```
+Use the `@sap-ux/fiori-mcp-server` MCP server to generate projects:
 
-Follow the interactive prompts for project type and configuration.
+1. **List available functionalities**
+   ```
+   mcp: fiori → list-functionality
+   ```
+
+2. **Get details for the target functionality** (e.g. `generate-fiori-app`)
+   ```
+   mcp: fiori → get-functionality-details { "functionality": "<name>" }
+   ```
+
+3. **Execute the functionality** with the required parameters
+   ```
+   mcp: fiori → execute-functionality { "functionality": "<name>", ... }
+   ```
+
+**NEVER** use `yo @sap/fiori` directly — always go through the MCP server.
+
+**Default language: TypeScript** — unless the user explicitly specifies otherwise.
