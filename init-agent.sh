@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# templates/ の中身を現在のディレクトリにコピーする
+# .claude/CLAUDE.md と .mcp.json をプロジェクトに作成する
 # 既存ファイルがある場合は何もせず終了する
 # .gitignore にそれらをコメント付きで追記（存在しない場合は作成）
 
@@ -22,26 +22,9 @@ copy_template_if_absent() {
     exit 1
   fi
 
+  mkdir -p "$(dirname "$dest")"
   cp "$src" "$dest"
   echo "✅ Created $dest"
-}
-
-copy_directory_if_absent() {
-  local src="$1"
-  local dest="$2"
-
-  if [[ -d "$dest" ]]; then
-    echo "⚠️  ${dest} directory already exists. Aborting initialization."
-    exit 1
-  fi
-
-  if [[ ! -d "$src" ]]; then
-    echo "❌ Template directory not found: $src"
-    exit 1
-  fi
-
-  cp -r "$src" "$dest"
-  echo "✅ Created $dest directory"
 }
 
 add_to_gitignore() {
@@ -73,7 +56,7 @@ add_to_gitignore() {
 
 main() {
   echo "🚀 Initializing Claude Code configuration..."
-  copy_directory_if_absent "${TEMPLATE_DIR}/.claude" ".claude"
+  copy_template_if_absent "${TEMPLATE_DIR}/.claude/CLAUDE.md" ".claude/CLAUDE.md"
   copy_template_if_absent "${TEMPLATE_DIR}/.mcp.json" ".mcp.json"
   add_to_gitignore
   echo "🎉 Initialization completed successfully in: $PWD"
