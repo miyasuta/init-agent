@@ -18,10 +18,8 @@ This tool copies the following files to your project:
   - Test-driven development strategy
   - CAP Java development guide
 - **.mcp.json** - MCP (Model Context Protocol) server configuration
-  - CAP MCP Server (@cap-js/mcp-server)
-  - Fiori MCP Server (@sap-ux/fiori-mcp-server)
-  - UI5 MCP Server (@ui5/mcp-server)
-  - SAP Docs Remote
+  - CAP MCP Server (`@cap-js/mcp-server`)
+  - Fiori MCP Server (`@sap-ux/fiori-mcp-server`)
 
 After copying, these files are automatically added to `.gitignore`.
 
@@ -71,6 +69,44 @@ templates/
         ├── test-strategy.md     # TDD strategy
         └── java/
             └── development-guide.md  # CAP Java development guide
+```
+
+## MCP Servers
+
+### Included in `.mcp.json`
+
+These are project-specific servers that must be explicitly enabled per project:
+
+| Server | Package | Purpose |
+|--------|---------|---------|
+| `cds-mcp` | `@cap-js/mcp-server` | CAP/CDS model search and documentation |
+| `fiori-mcp` | `@sap-ux/fiori-mcp-server` | Fiori app generation and documentation |
+
+### Managed separately (not in `.mcp.json`)
+
+The following servers are available via Claude plugins or remote MCP and are active globally — no per-project configuration needed:
+
+| Server | Source | Purpose |
+|--------|--------|---------|
+| `ui5-mcp-server` | `ui5@claude-plugins-official` plugin | UI5 API reference and linting |
+| `mcp-sap-docs` | claude.ai remote MCP | SAP documentation search |
+
+If you need to add these manually (e.g. in an environment without the plugin), use the following configuration in `.mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "sap-docs-remote": {
+      "type": "http",
+      "url": "https://mcp-sap-docs.marianzeis.de/mcp"
+    },
+    "ui5-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@ui5/mcp-server"]
+    }
+  }
+}
 ```
 
 ## Important Notes
